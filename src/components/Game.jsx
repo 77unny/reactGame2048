@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import times from 'lodash/times';
 import { MAX_POS } from '../constants';
+import { getInitailTileList } from '../utils/tile';
 
 export default function Game() {
+  const [tileList, setTileList] = useState(getInitailTileList);
   return (
     <div className="game-container">
       <div className="grid-container">
@@ -16,12 +18,11 @@ export default function Game() {
       </div>
 
       <div className="tile-container">
-        <div className="tile tile-4 tile-position-1-2 tile-new">
-          <div className="tile-inner">4</div>
-        </div>
-        <div className="tile tile-2 tile-position-1-3 tile-new">
-          <div className="tile-inner">2</div>
-        </div>
+        {tileList.map(item => (
+          <div className={`tile tile-${item.value} tile-position-${item.x}-${item.y}`}>
+            <div className="tile-inner">{item.value}</div>
+          </div>
+        ))}
       </div>
     </div>
   );
