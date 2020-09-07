@@ -12,11 +12,13 @@ export const getInitailTileList = () => {
 
 export const checkCollision = (tileList, tile) => tileList.some(item => item.x === tile.x && item.y === tile.y);
 
+let currentID = 0;
 export const makeTile = tileList => {
   let tile;
 
   while (!tile || checkCollision(tileList, tile)) {
     tile = {
+      id: currentID++,
       x: getRandomInteger(1, MAX_POS),
       y: getRandomInteger(1, MAX_POS),
       value: 2,
